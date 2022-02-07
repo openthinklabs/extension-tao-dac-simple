@@ -1,6 +1,6 @@
 {
 
-    "name": "oat-sa/extension-tao-dac-simple",
+    "name": "openthinkkabs/extension-tao-dac-simple",
     "description" : "extension that allows admin to give access to some resources to other people",
     "type" : "tao-extension",
     "authors" : [
@@ -20,16 +20,43 @@
         "tao-extension-name" : "taoDacSimple"
     },
     "minimum-stability" : "dev",
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "git@github.com:openthinklabs/oatbox-extension-installer.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:openthinklabs/generis.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "git@github.com:openthinklabs/tao-core.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:openthinklabs/extension-tao-backoffice.git"
+        }                
+    ],    
     "require": {
         "php": ">=7.1",
-        "oat-sa/oatbox-extension-installer": "~1.1||dev-master",
-        "oat-sa/generis" : ">=14.0.0",
-        "oat-sa/tao-core" : ">=48.0.0",
-        "oat-sa/extension-tao-backoffice" : ">=6.0.0"
+        "openthinklabs/oatbox-extension-installer": ">=1.2.2",
+        "openthinklabs/generis" : ">=15.11.0.2",
+        "openthinklabs/tao-core" : ">=48.66.1.1",
+        "openthinklabs/extension-tao-backoffice" : ">=6.4.2.3"
     },
     "autoload" : {
         "psr-4" : {
             "oat\\taoDacSimple\\" : ""
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "openthinklabs/composer-npm-bridge": true,
+            "openthinklabs/oatbox-extension-installer": true,
+            "oat-sa/oatbox-extension-installer": true,
+            "oat-sa/composer-npm-bridge": true
         }
     }
 }
