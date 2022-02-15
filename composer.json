@@ -1,62 +1,71 @@
 {
-
-    "name": "openthinkkabs/extension-tao-dac-simple",
-    "description" : "extension that allows admin to give access to some resources to other people",
-    "type" : "tao-extension",
-    "authors" : [
-        {
-        "name": "Open Assessment Technologies SA"
-        }
-    ],
-    "keywords" : [
-        "tao",
-        "computer-based-assessment"
-    ],
-    "homepage" : "http://www.taotesting.com",
-    "license" : [
-        "GPL-2.0-only"
-    ],
-    "extra" : {
-        "tao-extension-name" : "taoDacSimple"
-    },
-    "minimum-stability" : "dev",
-    "repositories": [
-        {
-          "type": "vcs",
-          "url": "git@github.com:openthinklabs/oatbox-extension-installer.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:openthinklabs/generis.git"
-        },        
-        {
-            "type": "vcs",
-            "url": "git@github.com:openthinklabs/tao-core.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:openthinklabs/extension-tao-backoffice.git"
-        }                
-    ],    
-    "require": {
-        "php": ">=7.1",
-        "openthinklabs/oatbox-extension-installer": ">=1.2.2",
-        "openthinklabs/generis" : ">=15.11.0.2",
-        "openthinklabs/tao-core" : ">=48.66.1.1",
-        "openthinklabs/extension-tao-backoffice" : ">=6.4.2.3"
-    },
-    "autoload" : {
-        "psr-4" : {
-            "oat\\taoDacSimple\\" : ""
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "openthinklabs/composer-npm-bridge": true,
-            "openthinklabs/oatbox-extension-installer": true,
-            "oat-sa/oatbox-extension-installer": true,
-            "oat-sa/composer-npm-bridge": true
-        }
+  "name": "openthinkkabs/extension-tao-dac-simple",
+  "description": "extension that allows admin to give access to some resources to other people",
+  "type": "tao-extension",
+  "authors": [
+    {
+      "name": "Open Assessment Technologies SA"
     }
+  ],
+  "keywords": [
+    "tao",
+    "computer-based-assessment"
+  ],
+  "homepage": "http://www.taotesting.com",
+  "license": [
+    "GPL-2.0-only"
+  ],
+  "extra": {
+    "tao-extension-name": "taoDacSimple"
+  },
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/oatbox-extension-installer.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/generis.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/tao-core.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/extension-tao-backoffice.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/lib-generis-search.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/jig.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/composer-npm-bridge.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "openthinklabs/oatbox-extension-installer": "1.2.2",
+    "openthinklabs/generis": "~15.11.0.4",
+    "openthinklabs/tao-core": "~48.66.1.4",
+    "openthinklabs/extension-tao-backoffice": "~6.4.2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "oat\\taoDacSimple\\": ""
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "openthinklabs/composer-npm-bridge": true,
+      "openthinklabs/oatbox-extension-installer": true
+    }
+  }
 }
