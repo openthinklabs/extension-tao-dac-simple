@@ -1,5 +1,5 @@
 {
-  "name": "openthinkkabs/extension-tao-dac-simple",
+  "name": "openthinklabs/extension-tao-dac-simple",
   "description": "extension that allows admin to give access to some resources to other people",
   "type": "tao-extension",
   "authors": [
