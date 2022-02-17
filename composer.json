@@ -52,9 +52,9 @@
   "require": {
     "php": ">=7.1",
     "openthinklabs/oatbox-extension-installer": "1.2.2",
-    "openthinklabs/generis": "~15.11.0.4",
-    "openthinklabs/tao-core": "~48.66.1.4",
-    "openthinklabs/extension-tao-backoffice": "~6.4.2.6"
+    "openthinklabs/generis": "~15.11.0.5",
+    "openthinklabs/tao-core": "~48.66.1.8",
+    "openthinklabs/extension-tao-backoffice": "~6.4.2.7"
   },
   "autoload": {
     "psr-4": {
