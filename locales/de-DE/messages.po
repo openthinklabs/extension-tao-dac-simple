@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tao-open-source\n"
+"PO-Revision-Date: 2023-12-04 16:21\n"
+"Last-Translator: TAO Translation Team <translation@tao.lu>\n"
+"MIME-Version: 1.0\n"
+"Language: de\n"
+"sourceLanguage: en-US\n"
+"targetLanguage: en-US\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tao-open-source\n"
+"X-Crowdin-Project-ID: 590867\n"
+"X-Crowdin-Language: de\n"
+"X-Crowdin-File: /[oat-sa.extension-tao-dac-simple] develop/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 511\n"
+"Language-Team: German\n"
+
+msgid "%s classes and instances have been updated"
+msgstr "%s Klassen und Instanzen wurden aktualisiert"
+
+msgid "Access control"
+msgstr "Zugriffskontrolle"
+
+msgid "Access Permissions for"
+msgstr "Zugriffsberechtigungen für"
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "Add role(s)"
+msgstr "Rolle(n) hinzufügen"
+
+msgid "Add user(s)"
+msgstr "Benutzer hinzufügen"
+
+msgid "Error"
+msgstr "Fehlermeldung"
+
+msgid "grant"
+msgstr "Zugriff gewähren"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Permissions saved"
+msgstr "Berechtigungen gespeichert"
+
+msgid "read"
+msgstr "lesen"
+
+msgid "Recursive"
+msgstr "Rekursiv"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "role"
+msgstr "Rolle"
+
+msgid "Roles"
+msgstr "Rollen"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "something went wrong during taoDacSimple uninstallation\n"
+msgstr "während der Deinstallation von taoDacSimple ist ein Fehler aufgetreten\n"
+
+msgid "taoDacSimple extension correctly uninstalled"
+msgstr "Die taoDacSimple-Erweiterung wurde erfolgreich deinstalliert."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Unable to process your request"
+msgstr "Ihre Anfrage konnte nicht verarbeitet werden"
+
+msgid "user"
+msgstr "Benutzer"
+
+msgid "Users"
+msgstr "Nutzer"
+
+msgid "write"
+msgstr "schreiben"
+
+msgid "You must have one role or user that have the manage permission on this element."
+msgstr "Sie müssen eine Rolle oder einen Benutzer haben, der die Berechtigung zur Verwaltung dieses Elements hat."
+

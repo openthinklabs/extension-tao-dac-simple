@@ -23,39 +23,58 @@ declare(strict_types=1);
 namespace oat\taoDacSimple\model\eventHandler;
 
 use Laminas\ServiceManager\ServiceLocatorAwareTrait;
+use oat\generis\model\OntologyAwareTrait;
 use oat\oatbox\service\ConfigurableService;
 use oat\tao\model\event\ResourceMovedEvent;
-use oat\taoDacSimple\model\PermissionsService;
-use oat\taoDacSimple\model\PermissionsServiceFactory;
+use oat\taoDacSimple\model\ChangePermissionsService;
+use oat\taoDacSimple\model\Command\ChangePermissionsCommand;
 use oat\taoDacSimple\model\RolePrivilegeRetriever;
 
 class ResourceUpdateHandler extends ConfigurableService
 {
     use ServiceLocatorAwareTrait;
+    use OntologyAwareTrait;
 
     public function catchResourceUpdated(ResourceMovedEvent $event): void
     {
+        $permissionService = $this->getPermissionService();
+        $rolePrivilegeRetriever = $this->getRolePrivilegeRetriever();
         $movedResource = $event->getMovedResource();
 
-        $rolePrivilegeList = $this->getRolePrivilegeRetriever()->retrieveByResourceIds([
+        $rolePrivilegeList = $rolePrivilegeRetriever->retrieveByResourceIds([
             $event->getDestinationClass()->getUri(),
             $movedResource->getUri()
         ]);
 
-        $this->getPermissionService()->saveResourcePermissionsRecursive(
-            $movedResource,
-            $rolePrivilegeList
-        );
-    }
+        if ($movedResource->isClass()) {
+            foreach ($movedResource->getInstances(true) as $item) {
+                $itemUri = $item->getUri();
+                $itemPrivilegesMap[$itemUri] =  $rolePrivilegeRetriever->retrieveByResourceIds([$itemUri]);
+            }
+        }
 
+        $permissionService->change(new ChangePermissionsCommand($movedResource, $rolePrivilegeList, true));
+
+        if (isset($itemPrivilegesMap)) {
+            foreach ($itemPrivilegesMap as $uri => $itemPrivilege) {
+                $permissionService->change(
+                    new ChangePermissionsCommand(
+                        $this->getResource($uri),
+                        $itemPrivilege,
+                        true
+                    )
+                );
+            }
+        }
+    }
 
     private function getRolePrivilegeRetriever(): RolePrivilegeRetriever
     {
         return $this->getServiceLocator()->get(RolePrivilegeRetriever::class);
     }
 
-    private function getPermissionService(): PermissionsService
+    private function getPermissionService(): ChangePermissionsService
     {
-        return $this->getServiceLocator()->get(PermissionsServiceFactory::class)->create();
+        return $this->getServiceManager()->getContainer()->get(ChangePermissionsService::class);
     }
 }

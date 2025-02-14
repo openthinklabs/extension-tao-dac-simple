@@ -1,8 +1,5 @@
 <?php
 
-use oat\taoDacSimple\scripts\install\AttachEventHandler;
-use oat\taoDacSimple\scripts\update\Updater;
-
 /**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,9 +15,13 @@ use oat\taoDacSimple\scripts\update\Updater;
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2014-2020 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2014-2023 (original work) Open Assessment Technologies SA;
  */
 
+use oat\taoDacSimple\model\Copy\ServiceProvider\CopyServiceProvider;
+use oat\taoDacSimple\model\ServiceProvider\PermissionsServiceProvider;
+use oat\taoDacSimple\scripts\install\AttachEventHandler;
+use oat\taoDacSimple\scripts\update\Updater;
 use oat\taoDacSimple\scripts\install\SetupDataAccess;
 use oat\taoDacSimple\scripts\install\RegisterAction;
 use oat\taoDacSimple\controller\AdminAccessController;
@@ -63,5 +64,9 @@ return [
 
         #BASE URL (usually the domain root)
         'BASE_URL' => ROOT_URL . 'taoDacSimple/',
+    ],
+    'containerServiceProviders' => [
+        CopyServiceProvider::class,
+        PermissionsServiceProvider::class
     ]
 ];

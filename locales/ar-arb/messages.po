@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tao-open-source\n"
+"PO-Revision-Date: 2023-12-04 16:21\n"
+"Last-Translator: TAO Translation Team <translation@tao.lu>\n"
+"MIME-Version: 1.0\n"
+"Language: ar-arb\n"
+"sourceLanguage: en-US\n"
+"targetLanguage: ar-arb\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Crowdin-Project: tao-open-source\n"
+"X-Crowdin-Project-ID: 590867\n"
+"X-Crowdin-Language: ar\n"
+"X-Crowdin-File: /[oat-sa.extension-tao-dac-simple] develop/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 511\n"
+"Language-Team: Arabic\n"
+
+msgid "%s classes and instances have been updated"
+msgstr "تم تحديث الأقسام والحالات %s"
+
+msgid "Access control"
+msgstr "التحكم في الولوج"
+
+msgid "Access Permissions for"
+msgstr "رُخَصُ الْوُلُوج ل"
+
+msgid "Actions"
+msgstr "إجراءات"
+
+msgid "Add role(s)"
+msgstr "أضف دور (أدوار)"
+
+msgid "Add user(s)"
+msgstr "أضف مستخدم (مستخدمين)"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "grant"
+msgstr "منح"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Permissions saved"
+msgstr "الرخص محفوظة"
+
+msgid "read"
+msgstr "قراءة"
+
+msgid "Recursive"
+msgstr "متكرر"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "role"
+msgstr "دور"
+
+msgid "Roles"
+msgstr "أدوار"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "something went wrong during taoDacSimple uninstallation\n"
+msgstr "حدث خطأ ما خلال إلغاء تثبيت taoDacSimple\n"
+
+msgid "taoDacSimple extension correctly uninstalled"
+msgstr "تم إلغاء تثبيت ملحق taoDacSimple بشكل صحيح"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Unable to process your request"
+msgstr "غير قادر على معالجة طلبك"
+
+msgid "user"
+msgstr "مستعمل"
+
+msgid "Users"
+msgstr "المستخدمون"
+
+msgid "write"
+msgstr "اكتب"
+
+msgid "You must have one role or user that have the manage permission on this element."
+msgstr "يجب أن يكون لديك دور واحد أو مستخدم لديه رخصة إدارة هذا العنصر."
+

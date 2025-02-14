@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,6 +18,8 @@ declare(strict_types=1);
  * Copyright (c) 2020 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  *
  */
+
+declare(strict_types=1);
 
 namespace oat\taoDacSimple\model;
 
@@ -48,6 +48,11 @@ class PermissionProvider extends ConfigurableService implements PermissionInterf
     public const PERMISSION_GRANT = 'GRANT';
     public const PERMISSION_READ = 'READ';
     public const PERMISSION_WRITE = 'WRITE';
+    public const ALLOWED_PERMISSIONS = [
+        PermissionProvider::PERMISSION_READ,
+        PermissionProvider::PERMISSION_GRANT,
+        PermissionProvider::PERMISSION_WRITE,
+    ];
 
     /**
      * (non-PHPdoc)

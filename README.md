@@ -1,6 +1,8 @@
 Simple Data Access Control
 =====================
 
+[![codecov](https://codecov.io/gh/oat-sa/extension-tao-dac-simple/branch/master/graph/badge.svg?token=nJlrg5cQ37)](https://codecov.io/gh/oat-sa/extension-tao-dac-simple)
+
 Simple Data Access Control allows the restriction of which user can access which resources, in the way compatible with
 Advanced Search.
 
@@ -110,3 +112,9 @@ return new oat\taoDacSimple\model\PermissionsServiceFactory(
     ]
 );
 ```
+
+# Environment variables
+
+| Variable          | Description                      | Default value       | Values                                         |
+|-------------------|----------------------------------|---------------------|------------------------------------------------|
+| ACL_TRANSFER_MODE | Set the preferable transfer mode | `acl.keep.original` | `acl.keep.original`<br/> `acl.use.destination` |

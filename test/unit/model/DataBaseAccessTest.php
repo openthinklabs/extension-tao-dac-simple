@@ -24,7 +24,8 @@ namespace oat\taoDacSimple\test\unit\model;
 
 use common_persistence_SqlPersistence;
 use core_kernel_classes_Resource;
-use oat\generis\test\TestCase;
+use oat\generis\test\ServiceManagerMockTrait;
+use PHPUnit\Framework\TestCase;
 use oat\oatbox\event\EventManager;
 use oat\taoDacSimple\model\DataBaseAccess;
 use oat\taoDacSimple\model\event\DacAddedEvent;
@@ -42,6 +43,8 @@ use ReflectionProperty;
  */
 class DataBaseAccessTest extends TestCase
 {
+    use ServiceManagerMockTrait;
+
     private const INSERT_CHUNK_SIZE = 1;
 
     /** @var DataBaseAccess */
@@ -60,9 +63,9 @@ class DataBaseAccessTest extends TestCase
 
         $this->sut = new DataBaseAccess();
         $this->sut->setLogger(new NullLogger());
-        $this->sut->setInsertChunkSize(self::INSERT_CHUNK_SIZE);
+        $this->sut->setWriteChunkSize(self::INSERT_CHUNK_SIZE);
         $this->sut->setServiceLocator(
-            $this->getServiceLocatorMock(
+            $this->getServiceManagerMock(
                 [
                     EventManager::SERVICE_ID => $this->eventManager
                 ]
@@ -86,6 +89,41 @@ class DataBaseAccessTest extends TestCase
         ];
     }
 
+    public function testCheckPermissions(): void
+    {
+        $userIds = ['a', 'b', 'c'];
+
+        $statementMock = $this->getMockBuilder(PDOStatementForTest::class)
+            ->onlyMethods(['fetchAll'])
+            ->getMock();
+
+        $statementMock->expects($this->once())
+            ->method('fetchAll')
+            ->with(PDO::FETCH_ASSOC)
+            ->willReturn(
+                [
+                    [
+                        'user_id' => 'b',
+                    ]
+                ]
+            );
+
+        $this->persistenceMock
+            ->method('query')
+            ->with(
+                'SELECT user_id FROM data_privileges WHERE user_id IN ( ? , ? , ? ) GROUP BY user_id',
+                $userIds
+            )
+            ->willReturn($statementMock);
+
+        $this->assertSame(
+            [
+                'b' => 'b'
+            ],
+            $this->sut->checkPermissions($userIds)
+        );
+    }
+
     /**
      * @dataProvider resourceIdsProvider
      * @preserveGlobalState disable
@@ -105,7 +143,10 @@ class DataBaseAccessTest extends TestCase
             ['fixture']
         ];
 
-        $statementMock = $this->createMock(PDOStatement::class);
+        $statementMock = $this->getMockBuilder(PDOStatementForTest::class)
+            ->onlyMethods(['fetchAll'])
+            ->getMock();
+
         $statementMock->expects($this->once())
             ->method('fetchAll')
             ->with(PDO::FETCH_ASSOC)
@@ -154,7 +195,10 @@ class DataBaseAccessTest extends TestCase
             3 => ['create', 'delete']
         ];
 
-        $statementMock = $this->createMock(PDOStatement::class);
+        $statementMock = $this->getMockBuilder(PDOStatementForTest::class)
+            ->onlyMethods(['fetchAll'])
+            ->getMock();
+
         $statementMock->expects($this->once())
             ->method('fetchAll')
             ->with(PDO::FETCH_ASSOC)
@@ -169,80 +213,6 @@ class DataBaseAccessTest extends TestCase
         $this->assertEquals([], $this->sut->getPermissions($userIds, []));
     }
 
-    /**
-     * @dataProvider addMultiplePermissionsDataProvider
-     */
-    public function testAddMultiplePermissions(int $numEvents, int $numInserts, array $permissionData): void
-    {
-        $this->persistenceMock
-            ->expects($this->exactly($numInserts))
-            ->method('insertMultiple')
-            ->with(DataBaseAccess::TABLE_PRIVILEGES_NAME, self::anything())
-            ->willReturnCallback(function ($tableName, array $data, array $types = []) {
-                return count($data);
-            });
-
-        $this->persistenceMock
-            ->expects($this->exactly($numInserts > 0 ? 1 : 0))
-            ->method('transactional')
-            ->willReturnCallback(function (callable $closure) {
-                $closure();
-            });
-
-        $this->eventManager
-            ->expects($this->exactly($numEvents))
-            ->method('trigger')
-            ->with($this->isInstanceOf(DacAddedEvent::class));
-
-        $this->sut->addMultiplePermissions($permissionData);
-    }
-
-    public function addMultiplePermissionsDataProvider(): array
-    {
-        return [
-            'Empty arrays don\'t result in events nor queries' => [
-                'numEvents' => 0,
-                'numInserts' => 0,
-                'permissionData' => []
-            ],
-            'Empty permissions don\'t result in events nor queries' => [
-                'numEvents' => 0,
-                'numInserts' => 0,
-                'permissionData' => [
-                    [
-                        'resource' => $this->getResourceMock('123'),
-                        'permissions' => []
-                    ]
-                ]
-            ],
-            '3 permissions: One resource, single user' => [
-                'numEvents' => 3,
-                'numInserts' => 3,
-                'permissionData' => [
-                    [
-                        'resource' => $this->getResourceMock('123'),
-                        'permissions' => [
-                            123 => ['GRANT', 'READ', 'WRITE']
-                        ]
-                    ]
-                ]
-            ],
-            '6 permissions: One resource, two users' => [
-                'numEvents' => 6,
-                'numInserts' => 6,
-                'permissionData' => [
-                    [
-                        'resource' => $this->getResourceMock('456'),
-                        'permissions' => [
-                            123 => ['GRANT', 'READ', 'WRITE'],
-                            456 => ['GRANT', 'WRITE', 'READ']
-                        ]
-                    ]
-                ]
-            ]
-        ];
-    }
-
     private function getResourceMock(string $id): core_kernel_classes_Resource
     {
         $resourceMock = $this->createMock(core_kernel_classes_Resource::class);
@@ -253,3 +223,17 @@ class DataBaseAccessTest extends TestCase
         return $resourceMock;
     }
 }
+
+/**
+ * Class needed to override methods form PDOStatement needed for this test.
+ * Method open() in PDOStatement has UnionType return and therefore cant be mocked by PHPUnit in version lower
+ * than 9 (currently 8.5 is installed)
+ */
+// @codingStandardsIgnoreStart
+class PDOStatementForTest extends PDOStatement
+{
+    public function fetchAll($mode = PDO::FETCH_BOTH, $fetch_argument = null, ...$args)
+    {
+    }
+}
+// @codingStandardsIgnoreEnd
