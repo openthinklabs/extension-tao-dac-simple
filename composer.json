@@ -21,11 +21,11 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "openthinklabs/oatbox-extension-installer": "~1.1||dev-master",
-        "openthinklabs/generis": ">=16.0.0",
-        "openthinklabs/tao-core": ">=54.29.1",
-        "openthinklabs/extension-tao-backoffice": ">=7.0.1",
-        "openthinklabs/extension-tao-item": ">=11.3"
+        "openthinklabs/oatbox-extension-installer": "dev-master",
+        "openthinklabs/generis": "dev-master",
+        "openthinklabs/tao-core": "dev-master",
+        "openthinklabs/extension-tao-backoffice": "dev-master",
+        "openthinklabs/extension-tao-item": "dev-master"
     },
     "autoload": {
         "psr-4": {
