@@ -15,12 +15,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2021-2023 (original work) Open Assessment Technologies SA.
+ * Copyright (c) 2021 (original work) Open Assessment Technologies SA;
  */
 
 declare(strict_types=1);
 
 namespace oat\taoDacSimple\scripts\install;
+
 
 use oat\oatbox\event\EventManager;
 use oat\oatbox\extension\InstallAction;
@@ -38,6 +39,7 @@ class AttachEventHandler extends InstallAction
                 ResourceUpdateHandler::class,
                 'catchResourceUpdated'
             ]
+
         );
         $this->getServiceManager()->register(EventManager::SERVICE_ID, $eventManager);
     }

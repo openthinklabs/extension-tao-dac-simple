@@ -51,9 +51,7 @@ class AdminService
             }
         }
 
-        $db->addPermissions($userUri, $resourceUri, ['OWNER']);
-
-        return true;
+        return $db->addPermissions($userUri, $resourceUri, ['OWNER']);
     }
 
     /**

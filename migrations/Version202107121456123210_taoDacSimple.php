@@ -12,6 +12,7 @@ use oat\taoDacSimple\model\eventHandler\ResourceUpdateHandler;
 
 final class Version202107121456123210_taoDacSimple extends AbstractMigration
 {
+
     public function getDescription(): string
     {
         return 'Attach ResourceMovedEvent handler';
@@ -27,6 +28,7 @@ final class Version202107121456123210_taoDacSimple extends AbstractMigration
                 ResourceUpdateHandler::class,
                 'catchResourceUpdated'
             ]
+
         );
         $this->getServiceManager()->register(EventManager::SERVICE_ID, $eventManager);
     }
@@ -41,6 +43,7 @@ final class Version202107121456123210_taoDacSimple extends AbstractMigration
                 ResourceUpdateHandler::class,
                 'catchResourceUpdated'
             ]
+
         );
         $this->getServiceManager()->register(EventManager::SERVICE_ID, $eventManager);
     }

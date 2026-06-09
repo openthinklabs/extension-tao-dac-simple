@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,43 +15,19 @@ declare(strict_types=1);
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2020 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2020 (original work) Open Assessment Technologies SA
  *
  */
 
 namespace oat\taoDacSimple\model\event;
 
+use JsonSerializable;
 use oat\oatbox\event\Event;
 
-class DacAffectedUsersEvent implements Event
+/**
+ * Class DacRootRemovedEvent This event not triggered on removing child permissions with recursive
+ * @package oat\taoDacSimple\model\event
+ */
+class DacRootRemovedEvent extends AbstractDacEvent implements Event, JsonSerializable
 {
-    /**
-     * @var string[]
-     */
-    private $permissionsAdded;
-    /**
-     * @var string[]
-     */
-    private $permissionsRemoved;
-
-    public function __construct(array $permissionsAdded, array $permissionsRemoved)
-    {
-        $this->permissionsAdded = $permissionsAdded;
-        $this->permissionsRemoved = $permissionsRemoved;
-    }
-
-    public function getName(): string
-    {
-        return __CLASS__;
-    }
-
-    public function getPermissionsAdded(): array
-    {
-        return $this->permissionsAdded;
-    }
-
-    public function getPermissionsRemoved(): array
-    {
-        return $this->permissionsRemoved;
-    }
 }

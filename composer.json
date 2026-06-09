@@ -1,35 +1,71 @@
 {
-
-    "name": "openthinklabs/extension-tao-dac-simple",
-    "description": "extension that allows admin to give access to some resources to other people",
-    "type": "tao-extension",
-    "authors": [
-        {
-            "name": "Open Assessment Technologies SA"
-        }
-    ],
-    "keywords": [
-        "tao",
-        "computer-based-assessment"
-    ],
-    "homepage": "http://www.taotesting.com",
-    "license": [
-        "GPL-2.0-only"
-    ],
-    "extra": {
-        "tao-extension-name": "taoDacSimple"
-    },
-    "minimum-stability": "dev",
-    "require": {
-        "openthinklabs/oatbox-extension-installer": "dev-master",
-        "openthinklabs/generis": "dev-master",
-        "openthinklabs/tao-core": "dev-master",
-        "openthinklabs/extension-tao-backoffice": "dev-master",
-        "openthinklabs/extension-tao-item": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "oat\\taoDacSimple\\": ""
-        }
+  "name": "openthinklabs/extension-tao-dac-simple",
+  "description": "extension that allows admin to give access to some resources to other people",
+  "type": "tao-extension",
+  "authors": [
+    {
+      "name": "Open Assessment Technologies SA"
     }
+  ],
+  "keywords": [
+    "tao",
+    "computer-based-assessment"
+  ],
+  "homepage": "http://www.taotesting.com",
+  "license": [
+    "GPL-2.0-only"
+  ],
+  "extra": {
+    "tao-extension-name": "taoDacSimple"
+  },
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/oatbox-extension-installer.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/generis.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/tao-core.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/extension-tao-backoffice.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/lib-generis-search.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/jig.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:openthinklabs/composer-npm-bridge.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "openthinklabs/oatbox-extension-installer": "1.2.2",
+    "openthinklabs/generis": "~15.19.2.1",
+    "openthinklabs/tao-core": "~50.11.1.3",
+    "openthinklabs/extension-tao-backoffice": "~6.10.1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "oat\\taoDacSimple\\": ""
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "openthinklabs/composer-npm-bridge": true,
+      "openthinklabs/oatbox-extension-installer": true
+    }
+  }
 }

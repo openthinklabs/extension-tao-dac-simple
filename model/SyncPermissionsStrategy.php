@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,8 +21,6 @@
  *
  */
 
-declare(strict_types=1);
-
 namespace oat\taoDacSimple\model;
 
 class SyncPermissionsStrategy extends PermissionsStrategyAbstract
@@ -29,8 +29,7 @@ class SyncPermissionsStrategy extends PermissionsStrategyAbstract
     {
         // we are going to add everything what current item has and remove the rest
         return [
-            'add' => $privilegesToSet,
-            'remove' => [],
+            'add' => $privilegesToSet
         ];
     }
 

@@ -30,8 +30,7 @@ use oat\oatbox\PhpSerializable;
 /**
  * Admin Action, based on xml:
  *
- * <action id="access-control-admin" name="Access control" url="/taoDacSimple/AdminAccessController/adminPermissions"
- *         group="tree" context="resource">
+ * <action id="access-control-admin" name="Access control" url="/taoDacSimple/AdminAccessController/adminPermissions" group="tree" context="resource">
  *     <icon id="icon-unlock" />
  * </action>
  */
@@ -116,9 +115,5 @@ class AdminAction implements MenuAction, PhpSerializable
         return [
             'id' => 'GRANT'
         ];
-    }
-    public function getWeight()
-    {
-        return self::WEIGHT_DEFAULT;
     }
 }

@@ -17,6 +17,7 @@
  */
 define([
     'jquery',
+    'lodash',
     'i18n',
     'tpl!taoDacSimple/controller/admin/line',
     'helpers',
@@ -28,6 +29,7 @@ define([
     'ui/taskQueueButton/standardButton',
 ], function (
     $,
+    _,
     __,
     lineTpl,
     helpers,
@@ -155,7 +157,7 @@ define([
         const label = $this.data('acl-label');
 
         // 2. Remove it from the list
-        if (type && user && label) {
+        if (!_.isEmpty(type) && !_.isEmpty(user) && !_.isEmpty(label)) {
             $this.closest('tr').remove();
         }
 
@@ -253,7 +255,7 @@ define([
             },
             labelField: 'label'
         };
-        if (typeof onSelectItem === "function") {
+        if (_.isFunction(onSelectItem)) {
             autocompleteOptions.onSelectItem = onSelectItem;
         }
         return autocomplete(element, autocompleteOptions);
@@ -300,7 +302,7 @@ define([
             }).on('finished', function(result){
                 if (result.task
                     && result.task.report
-                    && Array.isArray(result.task.report.children)
+                    && _.isArray(result.task.report.children)
                     && result.task.report.children.length
                     && result.task.report.children[0]) {
                     if(result.task.report.children[0].type === 'success'){
